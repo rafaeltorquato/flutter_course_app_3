@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './categories_screen.dart';
+import '../widgets/categories_grid.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(10),
-          child: const CaregoriesScreen(),
+          child: const CaregoriesGrid(),
         ),
       ),
     );
