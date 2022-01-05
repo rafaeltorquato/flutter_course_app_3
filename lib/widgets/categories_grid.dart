@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CaregoriesScreen extends StatelessWidget {
-  const CaregoriesScreen({Key? key}) : super(key: key);
+import 'category_item.dart';
+import '../dummy/dummy_data.dart';
+
+class CaregoriesGrid extends StatelessWidget {
+  const CaregoriesGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class CaregoriesScreen extends StatelessWidget {
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
       ),
-      children: [],
+      children: dummyCategories.map((c) => CategoryItem(c)).toList(),
     );
   }
 }

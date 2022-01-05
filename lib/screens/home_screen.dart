@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './categories_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -14,9 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('DeliMeals'),
       ),
-      body: const Center(
-        child: Center(
-          child: Text('Navigation Time!!'),
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          child: const CaregoriesScreen(),
         ),
       ),
     );
