@@ -35,6 +35,8 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: selectMeal,
+      borderRadius: BorderRadius.circular(15),
+      splashColor: Theme.of(context).primaryColorLight,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
