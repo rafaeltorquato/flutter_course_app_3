@@ -24,11 +24,9 @@ class CategoryMealsScreen extends StatelessWidget {
         title: Text(category.title),
       ),
       body: Center(
-        child: Expanded(
-          child: ListView.builder(
-            itemCount: mealsByCategory.length,
-            itemBuilder: (ctx, idx) => MealItem(meal: mealsByCategory[idx]),
-          ),
+        child: ListView.builder(
+          itemCount: mealsByCategory.length,
+          itemBuilder: (ctx, idx) => MealItem(meal: mealsByCategory[idx]),
         ),
       ),
     ));
