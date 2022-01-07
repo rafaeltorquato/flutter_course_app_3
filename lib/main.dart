@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../screens/home_screen.dart';
@@ -14,11 +16,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DeliMeals App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        fontFamily: 'Raleway',
+        textTheme: Theme.of(context).textTheme.copyWith(
+              headline5: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
-      home: const SafeArea(
-        child: HomeScreen(),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
