@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_app_3/screens/category_meals_screen.dart';
+import 'package:flutter_course_app_3/utils/route_animations.dart';
 import '../models/category.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -8,16 +9,13 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(this.category, {Key? key}) : super(key: key);
 
   navigateToCategoryMeals(BuildContext context) {
-    Navigator.of(context).push(PageRouteBuilder(
-      transitionsBuilder: (c, anim, a2, child) => FadeTransition(
-        opacity: anim,
-        child: child,
+    Navigator.of(context).push(
+      RouteAnimations.fadeIn(
+        (c, a, sc) => CategoryMealsScreen(
+          category: category,
+        ),
       ),
-      transitionDuration: const Duration(milliseconds: 200),
-      pageBuilder: (c, a1, a2) => CategoryMealsScreen(
-        category: category,
-      ),
-    ));
+    );
   }
 
   @override
