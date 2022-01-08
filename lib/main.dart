@@ -5,6 +5,7 @@ import '../screens/home_screen.dart';
 
 void main() {
   var mySystemTheme = SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.pink,
       systemNavigationBarColor: const Color.fromRGBO(255, 254, 229, 1),
       systemNavigationBarIconBrightness: Brightness.dark);
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'DeliMeals App',
       theme: ThemeData(
         primarySwatch: Colors.pink,
