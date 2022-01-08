@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_app_3/screens/meal_detail_screen.dart';
+import 'package:flutter_course_app_3/utils/route_animations.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
@@ -16,7 +18,15 @@ class MealItem extends StatelessWidget {
     Affordability.pricey: 'Pricey',
   };
 
-  void selectMeal() {}
+  void selectMeal(BuildContext context) {
+    Navigator.push(
+      context,
+      RouteAnimations.fadeIn(
+        (context, animation, secondaryAnimation) =>
+            MealDetailScreen(meal: meal),
+      ),
+    );
+  }
 
   String get complexityText {
     return complexityLabelMap[meal.complexity] ?? 'Default';
@@ -34,7 +44,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectMeal,
+      onTap: () => selectMeal(context),
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).primaryColorLight,
       child: Card(
@@ -45,39 +55,7 @@ class MealItem extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  child: Image.network(
-                    meal.imageUrl,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  bottom: 15,
-                  right: 10,
-                  child: Container(
-                    width: 250,
-                    color: Colors.black38,
-                    child: Text(
-                      meal.title,
-                      style: const TextStyle(
-                        fontSize: 26,
-                        color: Colors.white,
-                      ),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-                )
-              ],
-            ),
+            MealImage(meal),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
@@ -116,6 +94,51 @@ class MealItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class MealImage extends StatelessWidget {
+  final Meal meal;
+  const MealImage(
+    this.meal, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
+          child: Image.network(
+            meal.imageUrl,
+            height: 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned(
+          bottom: 15,
+          right: 10,
+          child: Container(
+            width: 250,
+            color: Colors.black38,
+            child: Text(
+              meal.title,
+              style: const TextStyle(
+                fontSize: 26,
+                color: Colors.white,
+              ),
+              softWrap: true,
+              overflow: TextOverflow.fade,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

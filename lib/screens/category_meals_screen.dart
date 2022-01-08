@@ -25,6 +25,7 @@ class CategoryMealsScreen extends StatelessWidget {
       ),
       body: Center(
         child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
           itemCount: mealsByCategory.length,
           itemBuilder: (ctx, idx) => MealItem(meal: mealsByCategory[idx]),
         ),

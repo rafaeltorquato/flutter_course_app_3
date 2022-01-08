@@ -9,6 +9,7 @@ class CaregoriesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(
+      physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(10),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
