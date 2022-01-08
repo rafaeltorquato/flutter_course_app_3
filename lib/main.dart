@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../screens/home_screen.dart';
 
 void main() {
+  var mySystemTheme = SystemUiOverlayStyle.light.copyWith(
+      systemNavigationBarColor: const Color.fromRGBO(255, 254, 229, 1),
+      systemNavigationBarIconBrightness: Brightness.dark);
+  SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
   runApp(const MyApp());
 }
 
