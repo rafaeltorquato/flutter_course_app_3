@@ -5,6 +5,7 @@ import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
+  final Function onRemoveMeal;
 
   final Map<Complexity, String> complexityLabelMap = const {
     Complexity.simple: 'Simple',
@@ -18,6 +19,12 @@ class MealItem extends StatelessWidget {
     Affordability.pricey: 'Pricey',
   };
 
+  const MealItem({
+    required this.meal,
+    Key? key,
+    required this.onRemoveMeal,
+  }) : super(key: key);
+
   void selectMeal(BuildContext context) {
     Navigator.push(
       context,
@@ -25,7 +32,7 @@ class MealItem extends StatelessWidget {
         (context, animation, secondaryAnimation) =>
             MealDetailScreen(meal: meal),
       ),
-    );
+    ).then((value) => onRemoveMeal(value));
   }
 
   String get complexityText {
@@ -35,11 +42,6 @@ class MealItem extends StatelessWidget {
   String get affordabilityText {
     return affordabilityLabelMap[meal.affordability] ?? 'Default';
   }
-
-  const MealItem({
-    required this.meal,
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

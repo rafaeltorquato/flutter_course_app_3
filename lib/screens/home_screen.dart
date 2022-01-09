@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/main_drawer.dart';
 import '../widgets/favorites_list.dart';
 import '../widgets/categories_grid.dart';
 
@@ -12,8 +13,9 @@ class HomeScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
+          drawer: const MainDrawer(),
           appBar: AppBar(
-            title: const Text('Meals'),
+            title: const Text('DeliMeals'),
             bottom: TabBar(
               tabs: [
                 Tab(

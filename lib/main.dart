@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import '../screens/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   var mySystemTheme = SystemUiOverlayStyle.light.copyWith(
       statusBarColor: Colors.pink,
       systemNavigationBarColor: const Color.fromRGBO(255, 254, 229, 1),
       systemNavigationBarIconBrightness: Brightness.dark);
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
