@@ -46,14 +46,14 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           const Divider(),
-          const SizedBox(
-            height: 20,
-          ),
-          MenuItem(
-            Icons.restaurant,
-            'Meals',
-            onTap: () => goToMeals(context),
-          ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          // MenuItem(
+          //   Icons.restaurant,
+          //   'Meals',
+          //   onTap: () => goToMeals(context),
+          // ),
           const SizedBox(
             height: 20,
           ),
