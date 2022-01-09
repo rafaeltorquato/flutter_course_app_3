@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course_app_3/screens/meal_detail_screen.dart';
-import 'package:flutter_course_app_3/utils/route_animations.dart';
+
+import '../screens/meal_detail_screen.dart';
+import '../utils/route_animations.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
-  final Function onRemoveMeal;
 
   final Map<Complexity, String> complexityLabelMap = const {
     Complexity.simple: 'Simple',
@@ -22,7 +22,6 @@ class MealItem extends StatelessWidget {
   const MealItem({
     required this.meal,
     Key? key,
-    required this.onRemoveMeal,
   }) : super(key: key);
 
   void selectMeal(BuildContext context) {
@@ -32,7 +31,7 @@ class MealItem extends StatelessWidget {
         (context, animation, secondaryAnimation) =>
             MealDetailScreen(meal: meal),
       ),
-    ).then((value) => onRemoveMeal(value));
+    );
   }
 
   String get complexityText {

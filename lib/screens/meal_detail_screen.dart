@@ -9,10 +9,6 @@ class MealDetailScreen extends StatelessWidget {
     required this.meal,
   }) : super(key: key);
 
-  void removeMeal(BuildContext context) {
-    Navigator.of(context).pop(meal);
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,10 +76,6 @@ class MealDetailScreen extends StatelessWidget {
             )),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => removeMeal(context),
-        child: const Icon(Icons.delete),
       ),
     ));
   }

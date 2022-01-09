@@ -1,60 +1,122 @@
+import 'dart:async';
+
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_course_app_3/cubit/category_filter_cubit.dart';
+import 'package:flutter_course_app_3/models/meal.dart';
 
 import '../models/category.dart';
-import '../models/meal.dart';
+import '../models/meal_filter.dart';
 
-const List<Category> dummyCategories = [
+part 'categories_state.dart';
+
+class CategoriesCubit extends Cubit<CategoriesState> {
+  final CategoryFilterCubit categoryFilterCubit;
+  late final StreamSubscription streamSubscription;
+
+  CategoriesCubit(this.categoryFilterCubit) : super(initialState) {
+    streamSubscription = categoryFilterCubit.stream.listen((event) {
+      emit(CategoriesFiltered(filterCategories(event.filter), event.filter));
+    });
+  }
+
+  List<Category> filterCategories(MealFilter filter) {
+    return initialState.categories
+        .where((cat) => cat.filterMeals(filter).isNotEmpty)
+        .toList();
+  }
+
+  @override
+  Future<void> close() {
+    streamSubscription.cancel();
+    return super.close();
+  }
+}
+
+//Application data
+
+final initialState = CategoriesInitial([
   Category(
     id: 'c1',
     title: 'Italian',
     color: Colors.purple,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c1'))
+        .toList(),
   ),
   Category(
     id: 'c2',
     title: 'Quick & Easy',
     color: Colors.red,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c2'))
+        .toList(),
   ),
   Category(
     id: 'c3',
     title: 'Hamburgers',
     color: Colors.orange,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c3'))
+        .toList(),
   ),
   Category(
     id: 'c4',
     title: 'German',
     color: Colors.amber,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c4'))
+        .toList(),
   ),
   Category(
     id: 'c5',
     title: 'Light & Lovely',
     color: Colors.blue,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c5'))
+        .toList(),
   ),
   Category(
     id: 'c6',
     title: 'Exotic',
     color: Colors.green,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c6'))
+        .toList(),
   ),
   Category(
     id: 'c7',
     title: 'Breakfast',
     color: Colors.lightBlue,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c7'))
+        .toList(),
   ),
   Category(
     id: 'c8',
     title: 'Asian',
     color: Colors.lightGreen,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c8'))
+        .toList(),
   ),
   Category(
     id: 'c9',
     title: 'French',
     color: Colors.pink,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c9'))
+        .toList(),
   ),
   Category(
     id: 'c10',
     title: 'Summer',
     color: Colors.teal,
+    meals: dummyMeals
+        .where((element) => element.categories.contains('c10'))
+        .toList(),
   ),
-];
+]);
 
 const dummyMeals = [
   Meal(

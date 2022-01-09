@@ -1,77 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FiltersScreen extends StatefulWidget {
+import '../cubit/category_filter_cubit.dart';
+
+class FiltersScreen extends StatelessWidget {
   const FiltersScreen({Key? key}) : super(key: key);
 
   @override
-  State<FiltersScreen> createState() => _FiltersScreenState();
-}
-
-class _FiltersScreenState extends State<FiltersScreen> {
-  bool _glutenFree = false;
-  bool _vegan = false;
-  bool _vegetarian = false;
-  bool _lactoseFree = false;
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Filters'),
-      ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 20,
+    return BlocBuilder<CategoryFilterCubit, CategoryFilterState>(
+      builder: (context, state) {
+        CategoryFilterCubit cubit = context.read<CategoryFilterCubit>();
+        return SafeArea(
+            child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Filters'),
           ),
-          const Center(
-            child: Text(
-              'Adjust your meal selection',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+          body: Column(
+            children: [
+              const SizedBox(
+                height: 20,
               ),
-            ),
+              const Center(
+                child: Text(
+                  'Adjust your meal selection',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              FilterOptionItem(
+                title: 'Gluten-free',
+                subtitle: 'Only includes gluten-free meals.',
+                value: state.filter.isGlutenFree,
+                onChanged: (newValue) => cubit.changedGlutenFree(newValue),
+              ),
+              FilterOptionItem(
+                title: 'Lactose-free',
+                subtitle: 'Only includes lactose-free meals.',
+                value: state.filter.isLactoseFree,
+                onChanged: (newValue) => cubit.changedLactoseFree(newValue),
+              ),
+              FilterOptionItem(
+                title: 'Vegan',
+                subtitle: 'Only includes vegan meals.',
+                value: state.filter.isVegan,
+                onChanged: (newValue) => cubit.changedVegan(newValue),
+              ),
+              FilterOptionItem(
+                title: 'Vegetarian',
+                subtitle: 'Only includes vegetarian meals.',
+                value: state.filter.isVegetarian,
+                onChanged: (newValue) => cubit.changedVegetarian(newValue),
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          FilterOptionItem(
-            title: 'Gluten-free',
-            subtitle: 'Only includes gluten-free meals.',
-            value: _glutenFree,
-            onChanged: (newValue) {
-              setState(() => _glutenFree = newValue);
-            },
-          ),
-          FilterOptionItem(
-            title: 'Lactose-free',
-            subtitle: 'Only includes lactose-free meals.',
-            value: _lactoseFree,
-            onChanged: (newValue) {
-              setState(() => _lactoseFree = newValue);
-            },
-          ),
-          FilterOptionItem(
-            title: 'Vegan',
-            subtitle: 'Only includes vegan meals.',
-            value: _vegan,
-            onChanged: (newValue) {
-              setState(() => _vegan = newValue);
-            },
-          ),
-          FilterOptionItem(
-            title: 'Vegetarian',
-            subtitle: 'Only includes vegetarian meals.',
-            value: _vegetarian,
-            onChanged: (newValue) {
-              setState(() => _vegetarian = newValue);
-            },
-          ),
-        ],
-      ),
-    ));
+        ));
+      },
+    );
   }
 }
 

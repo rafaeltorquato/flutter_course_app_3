@@ -1,52 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../models/meal_filter.dart';
 import '../models/category.dart';
 import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
-import '../dummy/dummy_data.dart';
-
-class CategoryMealsScreen extends StatefulWidget {
+class CategoryMealsScreen extends StatelessWidget {
   final Category category;
+  final MealFilter filter;
 
-  const CategoryMealsScreen({Key? key, required this.category})
+  const CategoryMealsScreen(
+      {Key? key, required this.category, required this.filter})
       : super(key: key);
 
-  @override
-  State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
-}
-
-class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
-  late List<Meal> mealsByCategory;
-
-  @override
-  void initState() {
-    super.initState();
-    mealsByCategory = dummyMeals
-        .where((meal) => meal.categories.contains(widget.category.id))
-        .toList();
-  }
-
-  void handleRemoveMeal(Meal meal) {
-    setState(() {
-      mealsByCategory.removeWhere((element) => element == meal);
-    });
-  }
+  void handleRemoveMeal(BuildContext context, Meal meal) {}
 
   @override
   Widget build(BuildContext context) {
+    List<Meal> filteredMeals = category.filterMeals(filter);
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.category.title),
+        title: Text(category.title),
       ),
       body: Center(
         child: ListView.builder(
           physics: const BouncingScrollPhysics(),
-          itemCount: mealsByCategory.length,
+          itemCount: filteredMeals.length,
           itemBuilder: (ctx, idx) => MealItem(
-            meal: mealsByCategory[idx],
-            onRemoveMeal: handleRemoveMeal,
+            meal: filteredMeals[idx],
           ),
         ),
       ),
