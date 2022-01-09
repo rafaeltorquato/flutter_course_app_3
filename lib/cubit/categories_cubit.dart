@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_course_app_3/cubit/category_filter_cubit.dart';
-import 'package:flutter_course_app_3/models/meal.dart';
 
+import '../cubit/category_filter_cubit.dart';
+import '../models/meal.dart';
 import '../models/category.dart';
 import '../models/meal_filter.dart';
 
