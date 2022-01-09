@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../utils/app_colors.dart';
 import '../screens/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   var mySystemTheme = SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.pink,
-      systemNavigationBarColor: const Color.fromRGBO(255, 254, 229, 1),
+      statusBarColor: AppColors.primary,
+      systemNavigationBarColor: AppColors.secondary,
       systemNavigationBarIconBrightness: Brightness.dark);
   SystemChrome.setSystemUIOverlayStyle(mySystemTheme);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -23,8 +24,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'DeliMeals App',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
-        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        primarySwatch: AppColors.primary as MaterialColor,
+        canvasColor: AppColors.secondary,
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.copyWith(
               headline5: const TextStyle(
