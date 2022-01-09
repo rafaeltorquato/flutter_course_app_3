@@ -18,14 +18,14 @@ class Category {
 
   List<Meal> filterMeals(MealFilter filter) {
     return meals.where((meal) {
-      return _smartfilter(filter.isGlutenFree, meal.isGlutenFree) &&
-          _smartfilter(filter.isLactoseFree, meal.isLactoseFree) &&
-          _smartfilter(filter.isVegan, meal.isVegan) &&
-          _smartfilter(filter.isVegetarian, meal.isVegetarian);
+      return _smartFilter(filter.isGlutenFree, meal.isGlutenFree) &&
+          _smartFilter(filter.isLactoseFree, meal.isLactoseFree) &&
+          _smartFilter(filter.isVegan, meal.isVegan) &&
+          _smartFilter(filter.isVegetarian, meal.isVegetarian);
     }).toList();
   }
 
-  bool _smartfilter(bool b1, bool b2) {
+  bool _smartFilter(bool b1, bool b2) {
     return (b1 && b1 == b2) || true;
   }
 }
