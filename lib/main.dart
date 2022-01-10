@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubit/favorites_meals_cubit.dart';
 import '../cubit/categories_cubit.dart';
 import '../cubit/category_filter_cubit.dart';
 import '../utils/app_colors.dart';
@@ -30,8 +31,12 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         BlocProvider(
-            create: (context) =>
-                CategoriesCubit(context.read<CategoryFilterCubit>())),
+          create: (context) =>
+              CategoriesCubit(context.read<CategoryFilterCubit>()),
+        ),
+        BlocProvider(
+          create: (context) => FavoritesMealsCubit(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

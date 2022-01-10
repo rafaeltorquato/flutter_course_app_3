@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
-                      Icon(Icons.star),
+                      Icon(Icons.favorite),
                       SizedBox(width: 5),
                       Text('Favorites'),
                     ],

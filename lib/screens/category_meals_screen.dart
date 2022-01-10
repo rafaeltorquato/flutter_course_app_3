@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubit/favorites_meals_cubit.dart';
 import '../models/meal_filter.dart';
 import '../models/category.dart';
 import '../models/meal.dart';
@@ -24,12 +26,20 @@ class CategoryMealsScreen extends StatelessWidget {
         title: Text(category.title),
       ),
       body: Center(
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: filteredMeals.length,
-          itemBuilder: (ctx, idx) => MealItem(
-            meal: filteredMeals[idx],
-          ),
+        child: BlocBuilder<FavoritesMealsCubit, FavoritesMealsState>(
+          builder: (context, state) {
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: filteredMeals.length,
+              itemBuilder: (ctx, idx) {
+                Meal meal = filteredMeals[idx];
+                return MealItem(
+                  meal: meal,
+                  favorited: state.meals.contains(meal),
+                );
+              },
+            );
+          },
         ),
       ),
     ));

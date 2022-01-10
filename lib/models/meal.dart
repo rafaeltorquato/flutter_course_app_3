@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 enum Complexity {
   simple,
   challenging,
@@ -10,7 +12,7 @@ enum Affordability {
   luxurious,
 }
 
-class Meal {
+class Meal extends Equatable {
   final String id;
   final String title;
   final String imageUrl;
@@ -40,4 +42,7 @@ class Meal {
     required this.isVegetarian,
     required this.isLactoseFree,
   });
+
+  @override
+  List<Object?> get props => [id];
 }

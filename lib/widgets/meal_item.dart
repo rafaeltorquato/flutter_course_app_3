@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_course_app_3/cubit/favorites_meals_cubit.dart';
 
 import '../screens/meal_detail_screen.dart';
 import '../utils/route_animations.dart';
@@ -6,6 +8,7 @@ import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
+  final bool favorited;
 
   final Map<Complexity, String> complexityLabelMap = const {
     Complexity.simple: 'Simple',
@@ -21,6 +24,7 @@ class MealItem extends StatelessWidget {
 
   const MealItem({
     required this.meal,
+    required this.favorited,
     Key? key,
   }) : super(key: key);
 
@@ -56,7 +60,10 @@ class MealItem extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
-            MealImage(meal),
+            MealImage(
+              meal: meal,
+              favorited: favorited,
+            ),
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
@@ -101,8 +108,10 @@ class MealItem extends StatelessWidget {
 
 class MealImage extends StatelessWidget {
   final Meal meal;
-  const MealImage(
-    this.meal, {
+  final bool favorited;
+  const MealImage({
+    required this.meal,
+    required this.favorited,
     Key? key,
   }) : super(key: key);
 
@@ -138,7 +147,27 @@ class MealImage extends StatelessWidget {
               overflow: TextOverflow.fade,
             ),
           ),
-        )
+        ),
+        Positioned(
+          bottom: 205,
+          right: 35,
+          child: IconButton(
+            icon: Icon(
+              favorited
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_outline_rounded,
+              size: 70,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: () {
+              if (favorited) {
+                context.read<FavoritesMealsCubit>().remove(meal);
+              } else {
+                context.read<FavoritesMealsCubit>().add(meal);
+              }
+            },
+          ),
+        ),
       ],
     );
   }
