@@ -151,6 +151,7 @@ class MealImage extends StatelessWidget {
         Positioned(
           bottom: 205,
           right: 35,
+          //FIXME tap buttom sometimes tap the entire component
           child: IconButton(
             icon: Icon(
               favorited
