@@ -157,13 +157,21 @@ class MealImage extends StatelessWidget {
               var cubit = context.read<FavoritesMealsCubit>();
               favorited ? cubit.remove(meal) : cubit.add(meal);
             },
-            //TODO Make the transition to selected animated
-            child: Icon(
-              favorited
-                  ? Icons.favorite_rounded
-                  : Icons.favorite_outline_rounded,
-              size: 70,
-              color: Theme.of(context).primaryColor,
+            child: AnimatedCrossFade(
+              crossFadeState: favorited
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 300),
+              firstChild: Icon(
+                Icons.favorite_rounded,
+                size: 70,
+                color: Theme.of(context).primaryColor,
+              ),
+              secondChild: Icon(
+                Icons.favorite_outline_rounded,
+                size: 70,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           ),
         ),
