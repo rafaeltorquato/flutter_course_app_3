@@ -26,7 +26,7 @@ class Category {
   }
 
   bool _smartCompare(bool b1, bool b2) {
-    if (b1) return b1 == b2;
+    if (b1) return b2;
     return true;
   }
 }

@@ -9,34 +9,18 @@ class CategoryFilterCubit extends Cubit<CategoryFilterState> {
   CategoryFilterCubit() : super(CategoryFilterInitial());
 
   changedGlutenFree(bool value) {
-    emit(CategoryFilterChanged(MealFilter(
-        isGlutenFree: value,
-        isLactoseFree: state.filter.isLactoseFree,
-        isVegan: state.filter.isVegan,
-        isVegetarian: state.filter.isVegetarian)));
+    emit(CategoryFilterChanged(state.filter.copyWith(isGlutenFree: value)));
   }
 
   changedLactoseFree(bool value) {
-    emit(CategoryFilterChanged(MealFilter(
-        isGlutenFree: state.filter.isGlutenFree,
-        isLactoseFree: value,
-        isVegan: state.filter.isVegan,
-        isVegetarian: state.filter.isVegetarian)));
+    emit(CategoryFilterChanged(state.filter.copyWith(isLactoseFree: value)));
   }
 
   changedVegan(bool value) {
-    emit(CategoryFilterChanged(MealFilter(
-        isGlutenFree: state.filter.isGlutenFree,
-        isLactoseFree: state.filter.isLactoseFree,
-        isVegan: value,
-        isVegetarian: state.filter.isVegetarian)));
+    emit(CategoryFilterChanged(state.filter.copyWith(isVegan: value)));
   }
 
   changedVegetarian(bool value) {
-    emit(CategoryFilterChanged(MealFilter(
-        isGlutenFree: state.filter.isGlutenFree,
-        isLactoseFree: state.filter.isLactoseFree,
-        isVegan: state.filter.isVegan,
-        isVegetarian: value)));
+    emit(CategoryFilterChanged(state.filter.copyWith(isVegetarian: value)));
   }
 }
