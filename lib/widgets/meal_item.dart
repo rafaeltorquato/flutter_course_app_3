@@ -149,24 +149,22 @@ class MealImage extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 205,
-          right: 35,
-          //FIXME tap buttom sometimes tap the entire component
-          child: IconButton(
-            icon: Icon(
+          bottom: 170,
+          right: 20,
+          child: GestureDetector(
+            behavior: HitTestBehavior.deferToChild,
+            onTap: () {
+              var cubit = context.read<FavoritesMealsCubit>();
+              favorited ? cubit.remove(meal) : cubit.add(meal);
+            },
+            //TODO Make the transition to selected animated
+            child: Icon(
               favorited
                   ? Icons.favorite_rounded
                   : Icons.favorite_outline_rounded,
               size: 70,
               color: Theme.of(context).primaryColor,
             ),
-            onPressed: () {
-              if (favorited) {
-                context.read<FavoritesMealsCubit>().remove(meal);
-              } else {
-                context.read<FavoritesMealsCubit>().add(meal);
-              }
-            },
           ),
         ),
       ],

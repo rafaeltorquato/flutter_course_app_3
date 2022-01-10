@@ -9,6 +9,7 @@ class FavoritesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO make remove meal from favorites animated
     return BlocBuilder<FavoritesMealsCubit, FavoritesMealsState>(
       builder: (context, state) {
         return state.meals.isEmpty
