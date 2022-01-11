@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../cubit/category_filter_cubit.dart';
+import 'meal_filter_cubit.dart';
 import '../models/meal.dart';
 import '../models/category.dart';
 import '../models/meal_filter.dart';
@@ -11,16 +11,16 @@ import '../models/meal_filter.dart';
 part 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  final CategoryFilterCubit categoryFilterCubit;
+  final MealFilterCubit mealFilterCubit;
   late final StreamSubscription streamSubscription;
 
-  CategoriesCubit(this.categoryFilterCubit) : super(initialState) {
-    streamSubscription = categoryFilterCubit.stream.listen((event) {
-      emit(CategoriesFiltered(filterCategories(event.filter), event.filter));
+  CategoriesCubit(this.mealFilterCubit) : super(initialState) {
+    streamSubscription = mealFilterCubit.stream.listen((event) {
+      emit(CategoriesFiltered(_filterCategories(event.filter), event.filter));
     });
   }
 
-  List<Category> filterCategories(MealFilter filter) {
+  List<Category> _filterCategories(MealFilter filter) {
     return initialState.categories
         .where((cat) => cat.filterMeals(filter).isNotEmpty)
         .toList();

@@ -5,13 +5,16 @@ import '../models/meal.dart';
 part 'favorites_meals_state.dart';
 
 class FavoritesMealsCubit extends Cubit<FavoritesMealsState> {
-  FavoritesMealsCubit() : super(const FavoritesMealsState([]));
+  FavoritesMealsCubit() : super(FavoritesMealsInitialState());
 
   void add(Meal meal) {
-    emit(FavoritesMealsState([...state.meals, meal]));
+    emit(FavoritesMealsAddedState([...state.meals, meal]));
   }
 
   void remove(Meal meal) {
-    emit(FavoritesMealsState(state.meals..remove(meal)));
+    var list = [...state.meals];
+    var removedIndex = list.indexOf(meal);
+    list.removeAt(removedIndex);
+    emit(FavoritesMealsRemovedState(list, removedIndex));
   }
 }

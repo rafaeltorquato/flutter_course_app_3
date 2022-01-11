@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/favorites_meals_cubit.dart';
 import '../cubit/categories_cubit.dart';
-import '../cubit/category_filter_cubit.dart';
+import 'cubit/meal_filter_cubit.dart';
 import '../utils/app_colors.dart';
 import '../screens/home_screen.dart';
 
@@ -27,12 +27,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CategoryFilterCubit(),
+          create: (context) => MealFilterCubit(),
           lazy: false,
         ),
         BlocProvider(
-          create: (context) =>
-              CategoriesCubit(context.read<CategoryFilterCubit>()),
+          create: (context) => CategoriesCubit(context.read<MealFilterCubit>()),
         ),
         BlocProvider(
           create: (context) => FavoritesMealsCubit(),

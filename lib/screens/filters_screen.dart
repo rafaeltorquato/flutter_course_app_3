@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/category_filter_cubit.dart';
+import '../cubit/meal_filter_cubit.dart';
 
 class FiltersScreen extends StatelessWidget {
   const FiltersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryFilterCubit, CategoryFilterState>(
+    return BlocBuilder<MealFilterCubit, MealFilterState>(
       builder: (context, state) {
-        CategoryFilterCubit cubit = context.read<CategoryFilterCubit>();
+        MealFilterCubit cubit = context.read<MealFilterCubit>();
         return SafeArea(
             child: Scaffold(
           appBar: AppBar(

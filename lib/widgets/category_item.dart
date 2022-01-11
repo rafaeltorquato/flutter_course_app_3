@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/category_filter_cubit.dart';
+import '../cubit/meal_filter_cubit.dart';
 import '../screens/category_meals_screen.dart';
 import '../utils/route_animations.dart';
 import '../models/category.dart';
@@ -16,7 +16,7 @@ class CategoryItem extends StatelessWidget {
       RouteAnimations.fadeIn(
         (c, a, sc) => CategoryMealsScreen(
           category: category,
-          filter: context.read<CategoryFilterCubit>().state.filter,
+          filter: context.read<MealFilterCubit>().state.filter,
         ),
       ),
     );
