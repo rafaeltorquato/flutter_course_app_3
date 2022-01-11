@@ -1,16 +1,16 @@
-part of 'category_filter_cubit.dart';
+part of 'meal_filter_cubit.dart';
 
 @immutable
-abstract class CategoryFilterState {
+abstract class MealFilterState {
   final MealFilter filter;
 
-  const CategoryFilterState(this.filter);
+  const MealFilterState(this.filter);
 }
 
-class CategoryFilterInitial extends CategoryFilterState {
-  CategoryFilterInitial() : super(MealFilter());
+class MealFilterInitial extends MealFilterState {
+  MealFilterInitial() : super(MealFilter());
 }
 
-class CategoryFilterChanged extends CategoryFilterState {
-  const CategoryFilterChanged(MealFilter filter) : super(filter);
+class MealFilterChanged extends MealFilterState {
+  const MealFilterChanged(MealFilter filter) : super(filter);
 }
