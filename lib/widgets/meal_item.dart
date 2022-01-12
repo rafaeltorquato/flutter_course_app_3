@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_course_app_3/cubit/favorites_meals_cubit.dart';
 
 import '../screens/meal_detail_screen.dart';
-import '../utils/route_animations.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
