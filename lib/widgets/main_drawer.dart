@@ -18,13 +18,7 @@ class MainDrawer extends StatelessWidget {
   }
 
   void goToFilters(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(
-      context,
-      RouteAnimations.fadeIn(
-        (context, animation, secondaryAnimation) => const FiltersScreen(),
-      ),
-    );
+    Navigator.pushNamed(context, FiltersScreen.routeName);
   }
 
   @override

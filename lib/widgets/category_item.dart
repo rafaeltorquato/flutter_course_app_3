@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/meal_filter_cubit.dart';
 import '../screens/category_meals_screen.dart';
-import '../utils/route_animations.dart';
 import '../models/category.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -12,14 +11,12 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(this.category, {Key? key}) : super(key: key);
 
   navigateToCategoryMeals(BuildContext context) {
-    Navigator.of(context).push(
-      RouteAnimations.fadeIn(
-        (c, a, sc) => CategoryMealsScreen(
-          category: category,
-          filter: context.read<MealFilterCubit>().state.filter,
-        ),
-      ),
-    );
+    final filter = context.read<MealFilterCubit>().state.filter;
+    Navigator.pushNamed(context, CategoryMealsScreen.routeNameWithArgs,
+        arguments: {
+          CategoryMealsScreen.argCategory: category,
+          CategoryMealsScreen.argFilter: filter
+        });
   }
 
   @override

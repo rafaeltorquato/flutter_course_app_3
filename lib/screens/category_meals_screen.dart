@@ -8,6 +8,17 @@ import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
+  static const String routeNameWithArgs = '/category-meals-screen';
+  static const String argCategory = 'category';
+  static const String argFilter = 'filter';
+
+  static CategoryMealsScreen withArgs(Map args) {
+    return CategoryMealsScreen(
+      category: args[argCategory] as Category,
+      filter: args[argFilter] as MealFilter,
+    );
+  }
+
   final Category category;
   final MealFilter filter;
 

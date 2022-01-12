@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
+  static const String routeNameWithArgs = '/meal-detail-screen';
+  static const String argMeal = 'meal';
+
+  static MealDetailScreen withArgs(Map args) {
+    return MealDetailScreen(
+      meal: args[argMeal] as Meal,
+    );
+  }
+
   final Meal meal;
   const MealDetailScreen({
     Key? key,

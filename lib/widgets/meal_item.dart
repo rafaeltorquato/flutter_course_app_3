@@ -29,13 +29,8 @@ class MealItem extends StatelessWidget {
   }) : super(key: key);
 
   void selectMeal(BuildContext context) {
-    Navigator.push(
-      context,
-      RouteAnimations.fadeIn(
-        (context, animation, secondaryAnimation) =>
-            MealDetailScreen(meal: meal),
-      ),
-    );
+    Navigator.pushNamed(context, MealDetailScreen.routeNameWithArgs,
+        arguments: {MealDetailScreen.argMeal: meal});
   }
 
   String get complexityText {
