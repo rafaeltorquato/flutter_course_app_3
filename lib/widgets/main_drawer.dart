@@ -18,7 +18,7 @@ class MainDrawer extends StatelessWidget {
   }
 
   void goToFilters(BuildContext context) {
-    Navigator.pushNamed(context, FiltersScreen.routeName);
+    Navigator.popAndPushNamed(context, FiltersScreen.route);
   }
 
   @override

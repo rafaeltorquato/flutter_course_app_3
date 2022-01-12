@@ -12,11 +12,10 @@ class CategoryItem extends StatelessWidget {
 
   navigateToCategoryMeals(BuildContext context) {
     final filter = context.read<MealFilterCubit>().state.filter;
-    Navigator.pushNamed(context, CategoryMealsScreen.routeNameWithArgs,
-        arguments: {
-          CategoryMealsScreen.argCategory: category,
-          CategoryMealsScreen.argFilter: filter
-        });
+    Navigator.pushNamed(context, CategoryMealsScreen.routeWithArgs, arguments: {
+      CategoryMealsScreen.argCategory: category,
+      CategoryMealsScreen.argFilter: filter
+    });
   }
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  static const String routeNameWithArgs = '/meal-detail-screen';
+  static const String routeWithArgs = '/meal-detail-screen';
   static const String argMeal = 'meal';
 
   static MealDetailScreen withArgs(Map args) {

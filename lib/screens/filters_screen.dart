@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/meal_filter_cubit.dart';
 
 class FiltersScreen extends StatelessWidget {
-  static const routeName = '/filters-screen';
+  static const route = '/filters-screen';
 
   const FiltersScreen({Key? key}) : super(key: key);
 
