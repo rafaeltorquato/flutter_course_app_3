@@ -6,7 +6,7 @@ import '../screens/home_screen.dart';
 import '../screens/meal_detail_screen.dart';
 
 class AppRouter {
-  Route generateRoute(RouteSettings settings) {
+  static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (ctx) => const HomeScreen());

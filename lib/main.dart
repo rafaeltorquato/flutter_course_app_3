@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_course_app_3/screens/category_meals_screen.dart';
-import 'package:flutter_course_app_3/screens/filters_screen.dart';
-import 'package:flutter_course_app_3/screens/meal_detail_screen.dart';
+import 'package:flutter_course_app_3/routes/app_router.dart';
 
 import '../cubit/favorites_meals_cubit.dart';
 import '../cubit/categories_cubit.dart';
 import 'cubit/meal_filter_cubit.dart';
 import '../utils/app_colors.dart';
-import '../screens/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,22 +50,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
         ),
-        onGenerateRoute: (settings) {
-          switch (settings.name) {
-            case '/':
-              return MaterialPageRoute(builder: (ctx) => const HomeScreen());
-            case FiltersScreen.routeName:
-              return MaterialPageRoute(builder: (ctx) => const FiltersScreen());
-            case CategoryMealsScreen.routeNameWithArgs:
-              return MaterialPageRoute(
-                  builder: (ctx) =>
-                      CategoryMealsScreen.withArgs(settings.arguments as Map));
-            case MealDetailScreen.routeNameWithArgs:
-              return MaterialPageRoute(
-                  builder: (ctx) =>
-                      MealDetailScreen.withArgs(settings.arguments as Map));
-          }
-        },
+        onGenerateRoute: AppRouter.generateRoute,
       ),
     );
   }
